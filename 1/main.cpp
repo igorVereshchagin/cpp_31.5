@@ -88,7 +88,7 @@ int main()
   delete pc;
   a = *pb;
   d = a;
-
+  delete pb;
 
   return 0;
 }
