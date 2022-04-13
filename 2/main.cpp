@@ -1,9 +1,12 @@
 #include <iostream>
-#include <vector>
+#include "MatrixGraph.h"
 
 
 int main()
 {
-  std::cout << "Hello, World!" << std::endl;
+  MatrixGraph gr;
+  gr.AddEdge(0, 1);
+  gr.AddEdge(1, 2);
+  std::cout << gr << std::endl;
   return 0;
 }

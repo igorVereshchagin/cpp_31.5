@@ -6,17 +6,19 @@
 #define INC_2_LISTGRAPH_H
 
 #include "IGraph.h"
+#include <vector>
 
 class ListGraph : public IGraph
 {
+  std::vector<std::vector<int>> list;
 public:
   virtual ~ListGraph() {}
-  ListGraph() {};
-  ListGraph(ListGraph *_oth) {};
-  virtual void AddEdge(int from, int to) = 0;
-  virtual int VerticesCount() const = 0;
-  virtual void GetNextVertices(int vertex, std::vector<int> &vertices) const = 0;
-  virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const = 0;
+  ListGraph() : list() {};
+//  ListGraph(ListGraph *_oth) {};
+  virtual void AddEdge(int from, int to);
+  virtual int VerticesCount() const;
+  virtual void GetNextVertices(int vertex, std::vector<int> &vertices) const;
+  virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const;
 };
 
 

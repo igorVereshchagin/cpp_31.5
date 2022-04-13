@@ -6,17 +6,30 @@
 #define INC_2_MATRIXGRAPH_H
 
 #include "IGraph.h"
+#include <vector>
+#include <iostream>
 
 class MatrixGraph : public IGraph
 {
+  std::vector<std::vector<int>> matrix;
 public:
   virtual ~MatrixGraph() {}
-  MatrixGraph() {};
-  MatrixGraph(MatrixGraph *_oth) {};
-  virtual void AddEdge(int from, int to) = 0;
-  virtual int VerticesCount() const = 0;
-  virtual void GetNextVertices(int vertex, std::vector<int> &vertices) const = 0;
-  virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const = 0;
+  MatrixGraph() : matrix() {}
+//  MatrixGraph(MatrixGraph *_oth) {};
+  virtual void AddEdge(int from, int to);
+  virtual int VerticesCount() const;
+  virtual void GetNextVertices(int vertex, std::vector<int> &vertices) const;
+  virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const;
+  friend std::ostream& operator<<(std::ostream &os, const MatrixGraph& g)
+  {
+    for (int i = 0; i < g.size; i++)
+    {
+      for (int j = 0; j < g.size; j++)
+        os << g.matrix[i][j] << " ";
+      os << std::endl;
+    }
+    return os;
+  }
 };
 
 
