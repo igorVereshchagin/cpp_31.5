@@ -14,18 +14,38 @@ void MatrixGraph::AddEdge(int from, int to)
       matrix[i].resize(max_v);
   }
   matrix[from][to] = 1;
-  if (to != from)
-    matrix[to][from] = 1;
+}
+
+MatrixGraph::MatrixGraph(IGraph *_oth) : matrix()
+{
+  for (int v = 0; v < _oth->VerticesCount(); v++)
+  {
+    std::vector<int> vertices;
+    _oth->GetNextVertices(v, vertices);
+    for (int i = 0; i < vertices.size(); i++)
+      this->AddEdge(v, vertices[i]);
+  }
 }
 int  MatrixGraph::VerticesCount() const
 {
-  return 0;
+  return matrix.size();
 }
 void MatrixGraph::GetNextVertices(int vertex, std::vector<int> &vertices) const
 {
-
+  vertices.clear();
+  if (vertex >= matrix.size())
+    return;
+  for (int i = 0; i < matrix[vertex].size(); i++)
+    if (matrix[vertex][i] != 0)
+      vertices.push_back(i);
 }
+
 void MatrixGraph::GetPrevVertices(int vertex, std::vector<int> &vertices) const
 {
-
+  vertices.clear();
+  if (vertex >= matrix.size())
+    return;
+  for (int i = 0; i < matrix.size(); i++)
+    if (matrix[i][vertex] != 0)
+      vertices.push_back(i);
 }

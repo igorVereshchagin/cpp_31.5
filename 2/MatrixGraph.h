@@ -15,16 +15,16 @@ class MatrixGraph : public IGraph
 public:
   virtual ~MatrixGraph() {}
   MatrixGraph() : matrix() {}
-//  MatrixGraph(MatrixGraph *_oth) {};
+  MatrixGraph(IGraph *_oth);
   virtual void AddEdge(int from, int to);
   virtual int VerticesCount() const;
   virtual void GetNextVertices(int vertex, std::vector<int> &vertices) const;
   virtual void GetPrevVertices(int vertex, std::vector<int> &vertices) const;
   friend std::ostream& operator<<(std::ostream &os, const MatrixGraph& g)
   {
-    for (int i = 0; i < g.size; i++)
+    for (int i = 0; i < g.matrix.size(); i++)
     {
-      for (int j = 0; j < g.size; j++)
+      for (int j = 0; j < g.matrix.size(); j++)
         os << g.matrix[i][j] << " ";
       os << std::endl;
     }
