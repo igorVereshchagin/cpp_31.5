@@ -49,7 +49,10 @@ public:
   {
     std::cout << "Deleting shared_toy_ptr: " << obj << ": " << counter << ": " << *counter << std::endl;
     if(0 == --(*counter))
+    {
       delete this->obj;
+      delete this->counter;
+    }
   }
   shared_toy_ptr& operator=(const shared_toy_ptr& inPtr)
   {
@@ -58,7 +61,10 @@ public:
     if (nullptr != this->obj)
     {
       if(0 == --(*counter))
+      {
         delete this->obj;
+        delete this->counter;
+      }
     }
     obj = inPtr.obj;
     counter = inPtr.counter;
